@@ -74,47 +74,69 @@ As perguntas abaixo serão utilizadas para avaliar o funcionamento do notebook.
 Explique a diferença entre lista, tupla, conjunto e dicionário em Python. Apresente exemplos e cite as fontes utilizadas.
 
 **Resposta do NotebookLM:**  
-[Inserir aqui a resposta efetivamente gerada pelo NotebookLM.]
+As quatro principais estruturas de dados nativas para armazenar coleções em Python são **listas**, **tuplas**, **conjuntos** (*sets*) e **dicionários** (*dictionaries*)[1]. A escolha da estrutura adequada depende de três propriedades fundamentais: **mutabilidade** (se os dados podem ser alterados após a criação), **ordenação** (se os elementos mantêm uma sequência definida) e **duplicidade** (se permite valores repetidos)[3].
 
-**Fontes citadas pelo notebook:**  
-[Registrar os nomes das fontes e conferir as citações.]
+### Explicação Técnica e Diferenças
 
+* **Lista (** **list** **)**: É uma coleção **ordenada** e **mutável** que permite elementos duplicados[1]. É utilizada quando você precisa armazenar uma sequência de itens que pode crescer, diminuir ou ter seus valores alterados ao longo da execução do programa[3][4]. Notação: colchetes `[]`[4].
+* **Tupla (** **tuple** **)**: É uma coleção **ordenada** e **imutável** que permite elementos duplicados[3]. Uma vez criada, não é possível adicionar, remover ou modificar seus elementos[3]. É ideal para proteger dados contra alterações acidentais ou para representar registros fixos[3]. Notação: parênteses `()`[3].
+* **Conjunto (** **set** **)**: É uma coleção **não ordenada** e **mutável** formada exclusivamente por **elementos únicos** (não permite duplicatas)[2][3]. É muito eficiente para testar se um item pertence à coleção e para realizar operações matemáticas como união e intersecção[2][3]. Notação: chaves `{}` ou a função `set()`[3].
+* **Dicionário (** **dict** **)**: É uma coleção **mutável** estruturada em pares de **chave: valor**[1]. Cada chave precisa ser única e serve como um índice para acessar o valor correspondente de forma rápida[1][3]. Notação: chaves com pares separados por dois pontos `{chave: valor}`[1][3].
+
+### Tabela Comparativa
+
+| Estrutura      | Mutável? | Ordenada?                           | Permite Duplicatas?                  | Notação em Python                |
+| -------------- | -------- | ----------------------------------- | ------------------------------------ | -------------------------------- |
+| **Lista**      | Sim[3] | Sim[3][4]                       | Sim[3]                             | `[item1, item2]`[4]            |
+| **Tupla**      | Não[3] | Sim[3]                            | Sim[3]                             | `(item1, item2)`[3]            |
+| **Conjunto**   | Sim[3] | Não[3]                            | Não (elementos únicos)[2][3]     | `{item1, item2}` ou `set()`[3] |
+| **Dicionário** | Sim[3] | Sim (mantém ordem de inserção)[3] | Chaves: Não / Valores: Sim[1][3] | `{chave: valor}`[1][3]       |
+
+### Exemplos Práticos de Código
+
+# 1. LISTA: Permite alteração e elementos duplicados
+frutas = ["maçã", "banana", "laranja"]
+frutas.append("maçã")      # Adiciona uma duplicata
+frutas = "morango"       # Modifica o primeiro elemento (índice 0)
+print("Lista:", frutas)    # Saída: ['morango', 'banana', 'laranja', 'maçã']
+
+# 2. TUPLA: Não permite alteração após a criação
+coordenadas = (10.0, 20.0)
+print("Tupla:", coordenadas) # Saída: (10.0, 20.0)
+# coordenadas = 15.0    # Descomentar gera TypeError (imutável)
+
+# 3. CONJUNTO: Remove duplicatas automaticamente
+numeros = {1, 2, 2, 3, 4, 4}
+print("Conjunto:", numeros)  # Saída: {1, 2, 3, 4} (duplicatas são ignoradas)
+
+# 4. DICIONÁRIO: Estruturado em pares chave: valor
+aluno = {
+    "nome": "Carlos",
+    "idade": 20,
+    "curso": "ADS"
+}
+aluno["idade"] = 21          # Atualiza o valor associado à chave 'idade'
+print("Dicionário:", aluno)  # Saída: {'nome': 'Carlos', 'idade': 21, 'curso': 'ADS'}
+
+
+### Erros Comuns de Iniciantes
+
+1. **Tentar modificar uma tupla**: Tentar reatribuir um valor a uma posição de tupla como `tupla = 10` causa um erro do tipo `TypeError`[3].
+2. **Confundir conjunto vazio com dicionário vazio**: Declarar `dados = {}` cria um **dicionário** vazio, e não um conjunto[3]. Para criar um conjunto vazio, deve-se obrigatoriamente usar `dados = set()`[3].
+3. **Esperar ordem fixa em conjuntos antigos ou operações de busca**: Como os conjuntos são coleções não ordenadas baseadas em posições, você não deve tentar acessar elementos por índice como `conjunto`[3].
+4. **Usar chaves duplicadas no dicionário**: Ao definir uma chave que já existe em um dicionário, o Python sobrescreve o valor antigo pelo novo sem gerar alerta[1][3].
+**Fontes citadas pelo notebook:**
+* **O tutorial do Python — Documentação Python 3.12.15**: *Seção 3.1.3 (Listas)* e *Seção 5 (Estruturas de Dados: Listas, Tuplas, Conjuntos e Dicionários)*[3][4].
+* **Learn Python - Free Interactive Python Tutorial**: *Capítulos de Básico (Listas e Dicionários)* e *Tutoriais Avançados (Conjuntos)*[1][2].
+* **Aula de Python do Google | Python Education | Google for Developers**: *Módulos de Listas, Dicionários e Arquivos*[5].
+* 
 **Validação:**  
 Verificar se as explicações sobre mutabilidade, elementos únicos, pares de chave e valor e exemplos de código estão corretas e se as citações sustentam as afirmações.
-
-### Pergunta 2 — Programação Orientada a Objetos
-
-**Pergunta enviada:**
-
-Explique a diferença entre classe e objeto, utilizando um exemplo executável em Python. Indique quais fontes sustentam a explicação.
-
-**Resposta do NotebookLM:**  
-[Inserir aqui a resposta efetivamente gerada pelo NotebookLM.]
-
-**Fontes citadas pelo notebook:**  
-[Registrar os nomes das fontes e conferir as citações.]
-
-**Validação:**  
-Verificar se a distinção entre classe e objeto está correta, se o código é coerente e se as fontes citadas abordam esses conceitos.
-
-### Pergunta 3 — Auditoria das fontes
-
-**Pergunta enviada:**
-
-Quais fontes sustentam sua resposta anterior? Mostre as citações correspondentes e identifique qualquer afirmação que não possa ser confirmada diretamente nelas.
-
-**Resposta do NotebookLM:**  
-[Inserir aqui a resposta efetivamente gerada pelo NotebookLM.]
-
-**Resultado da auditoria:**  
-[Registrar se as citações levam aos trechos corretos, se existem afirmações sem sustentação e quais correções foram necessárias.]
-
-As respostas e os resultados da auditoria devem ser registrados após a execução real das perguntas, sem inventar resultados ou citações.
 
 ## 5. Link do notebook compartilhado
 
 **NotebookLM:**  
-[Inserir o link de compartilhamento gerado pelo NotebookLM.]
+[[Inserir o link de compartilhamento gerado pelo NotebookLM.]](https://notebook.google.com/notebook/da814712-ff0f-4275-9ad4-d82eaabb6c32)
 
 O link deverá ser testado para confirmar que abre o notebook e que as permissões permitem o acesso pretendido.
 
